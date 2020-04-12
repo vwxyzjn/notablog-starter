@@ -22,6 +22,7 @@
   <link rel="stylesheet" type="text/css" href="css/SourceSansPro.css">
   <link rel="stylesheet" type="text/css" href="css/theme.css">
   <link rel="stylesheet" type="text/css" href="css/notablog.css">
+  <script src="https://twemoji.maxcdn.com/v/latest/twemoji.min.js" crossorigin="anonymous"></script>
   <style>
     :root {
       font-size: 20px;
@@ -121,6 +122,32 @@
             rel="noopener noreferrer">Notablog</a>.
         </div>
     </footer>
+
+    <script>
+      // this script changes the favicon of the page
+      document.head || (document.head = document.getElementsByTagName('head')[0]);
+  
+      function changeFavicon(src) {
+      var link = document.createElement('link'),
+          oldLink = document.getElementById('dynamic-favicon');
+      link.id = 'dynamic-favicon';
+      link.rel = 'shortcut icon';
+      link.href = src;
+      if (oldLink) {
+        document.head.removeChild(oldLink);
+      }
+      document.head.appendChild(link);
+      }
+      // changeFavicon(src)
+      var elem= document.createElement("div");
+      elem.innerHTML = twemoji.parse("{{siteMeta.icon}}");
+  
+      var images = elem.getElementsByTagName("img");
+  
+      for(var i=0; i < images.length; i++){
+        changeFavicon(images[i].src)
+      }
+    </script>
 </body>
 
 </html>
